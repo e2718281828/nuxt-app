@@ -37,7 +37,6 @@ const createNewEmployee = async () => {
     };
     await createEmployee(newEmployee);
     props.data.push(newEmployee);
-    // Сбросить форму
     form.name = "";
     form.lastname = "";
     form.experience = "";

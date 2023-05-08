@@ -1,42 +1,3 @@
-<script setup>
-const props = defineProps({
-  show: {
-    type: Boolean,
-    default: false,
-  },
-  close: Function,
-  //   confirmToCloseByOutsideText: {
-  //     type: String,
-  //     default: "Подтвердите закрытие модального окна",
-  //   },
-  //   withoutChangeBodyOverflow: {
-  //     type: Boolean,
-  //     default: false,
-  //   },
-  zIndex: {
-    type: String,
-    default: "100",
-  },
-  key: {
-    type: String,
-  },
-});
-
-const modal = ref(null);
-// const showConfirmModal = ref(false);
-
-watch(
-  () => props.show,
-  (show) => {
-    // if (!props.withoutChangeBodyOverflow) {
-    show
-      ? document.body.classList.add("overflow-y-hidden")
-      : document.body.classList.remove("overflow-y-hidden");
-    // }
-  }
-);
-</script>
-
 <template>
   <div v-if="props.show" class="modal" :class="`z-${zIndex}`">
     <div class="relative p-4 w-full h-full md:h-auto m-auto">
@@ -76,6 +37,35 @@ watch(
     </div>
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: false,
+  },
+  close: Function,
+  zIndex: {
+    type: String,
+    default: "100",
+  },
+  key: {
+    type: String,
+  },
+});
+
+const modal = ref(null);
+
+// добавляем и убираем видимость модального окна
+watch(
+  () => props.show,
+  (show) => {
+    show
+      ? document.body.classList.add("overflow-y-hidden")
+      : document.body.classList.remove("overflow-y-hidden");
+  }
+);
+</script>
 
 <style lang="postcss" scoped>
 .modal {

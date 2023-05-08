@@ -70,6 +70,7 @@ import CreateEmployee from "~~/components/common/employees/CreateEmployee.vue";
 import EditEmployee from "~~/components/common/employees/EditEmployee.vue";
 import getEmployees from "~/api/employees.js";
 
+//название столбцов в таблице
 const tableFields = reactive([
   {
     key: "name",
@@ -97,24 +98,26 @@ const tableFields = reactive([
   }
 ]);
 
+//данные о сотрудниках
 const data = ref([]);
 
-// Загрузка сотрудников при монтировании компонента
+//загрузка сотрудников с бд
 async function loadEmployees() {
   data.value = await getEmployees();
 }
-
 loadEmployees();
 
 const isEditEmployeeVisible = ref(false);
 const isCreateEmployeeVisible = ref(false);
 const employeeId = ref("");
 
-const setEditEmployeeVisibility = (id) => {
+// изменяем видимость окна с редактированием сотрудника и передаем его id
+const setEditEmployeeVisibility = (id) => { 
   isEditEmployeeVisible.value = isEditEmployeeVisible.value ? false : true;
   employeeId.value = id;
 };
 
+// изменяем видимость окна с созданием сотрудника
 const setCreateEmployeeVisibility = () => {
   isCreateEmployeeVisible.value = isCreateEmployeeVisible.value ? false : true;
 };
