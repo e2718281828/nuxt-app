@@ -30,7 +30,6 @@ const saveEmployee = async () => {
     await updateEmployee(form.id, form);
     props.data[props.id] = form;
     props.close(); // закрытие формы
-    console.log(props.data[props.id]);
   } catch (error) {
     console.error(error);
   }
